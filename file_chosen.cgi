@@ -1,13 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import cgi, cgitb
+import cgi
 import csv 
 import urllib2
-import xmltodict
 import xml.etree.ElementTree as ET
 import lxml.etree
-import requests
 from Bio import SeqIO
 
 form = cgi.FieldStorage()
@@ -57,7 +55,7 @@ for seq_record in SeqIO.parse(fileitem.file, "fasta"):
 		writer.writerows(matchdetails)
 		s.close()
 		print("""<p>Successfully fetched results for sequence no. {0}.<br>Download results as an xml file: <a href="{1}">{2}</a></p>
-		""").format(str(x), 'output_'+seq_record.id + '_' + idvalue + '.csv', 'output_'+seq_record.id + '_' + idvalue + '.csv')
+		""").format(str(x), seq_record.id + '_' + idvalue + '.csv', seq_record.id + '_' + idvalue + '.csv')
 	x += 1
 
 print("""
